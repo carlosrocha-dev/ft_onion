@@ -14,9 +14,21 @@ COPY src/js/cpf-generator.js /var/www/html/js/cpf-generator.js
 
 COPY src/sshd_conf /etc/ssh/sshd_config
 
-COPY src/torrcl /etc/tor/torrc
+ARG SSH_USER
+ARG SSH_PASSWORD
 
-RUN mkdir -p /var/lib/tor/hidden_service && chown -R debian-tor:debian-tor /var/lib/tor/hidden_service && chmod 700 /var/lib/tor/hidden_service
+RUN useradd -ms /bin/bash $SSH_USER && \
+    echo "$SSH_USER:$SSH_PASSWORD" | chpasswd
+
+COPY src/torrc /etc/tor/torrc
+
+RUN mkdir -p /var/lib/tor/hidden_service && \
+    chown -R debian-tor:debian-tor /var/lib/tor/hidden_service && \
+    chmod 700 /var/lib/tor/hidden_service
+
+RUN mkdir -p /var/log/tor && \
+    chown -R debian-tor:debian-tor /var/log/tor && \
+    chmod 700 /var/log/tor
 
 RUN mkdir -p /var/log/nginx
 
@@ -25,8 +37,6 @@ EXPOSE 80 4242
 COPY Makefile /app/Makefile
 
 WORKDIR /app
-
-RUN make build
 
 COPY src/init.sh /app/init.sh
 RUN chmod +x /app/init.sh

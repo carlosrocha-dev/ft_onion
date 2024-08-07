@@ -1,10 +1,13 @@
 DOCKER_IMAGE = ft_onion
 DOCKER_CONTAINER = ft_onion-container
 
+include .env
+export $(shell sed 's/=.*//' .env)
+
 all: docker-build
 
 docker-build: docker-stop docker-clean
-	docker build -t $(DOCKER_IMAGE) -f dockerfile .
+	docker build --build-arg SSH_USER=$(SSH_USER) --build-arg SSH_PASSWORD=$(SSH_PASSWORD) -t $(DOCKER_IMAGE) -f dockerfile .
 
 docker-run:
 	docker run -d -p 80:80 -p 4242:4242 --name $(DOCKER_CONTAINER) $(DOCKER_IMAGE)

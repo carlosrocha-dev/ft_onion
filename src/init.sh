@@ -16,10 +16,20 @@ service nginx start
 echo "Starting Tor service..."
 service tor start
 
+echo "Waiting for Tor to create the hidden service directory..."
+for i in {1..10}; do
+    if [ -f /var/lib/tor/hidden_service/hostname ]; then
+        break
+    fi
+    echo "Tor directory not created yet, retrying in 2 seconds..."
+    sleep 2
+done
+
 if [ ! -f /var/lib/tor/hidden_service/hostname ]; then
   echo "Tor did not create the hidden service directory. Exiting..."
   exit 1
 fi
+5giydrgqggshxpxivbwqf23jddamis3gibouoytna7lueobg5gmwhwad.onion
 
 echo "All services started. Keeping the container running..."
 tail -f /dev/null
