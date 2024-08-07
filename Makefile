@@ -27,4 +27,11 @@ run: docker-build docker-run
 hostname:
 	docker exec -it $(DOCKER_CONTAINER) cat /var/lib/tor/hidden_service/hostname
 
-.PHONY: all build docker-build docker-run docker-clean docker-stop docker-prune run hostname
+test: run
+	sleep 30 # Aguarde o Tor criar o diretório do serviço oculto
+	docker exec -it $(DOCKER_CONTAINER) /app/test_onion.sh
+
+prompt:
+	docker exec -it $(DOCKER_CONTAINER) /bin/bash
+
+.PHONY: all build docker-build docker-run docker-clean docker-stop docker-prune run hostname test prompt

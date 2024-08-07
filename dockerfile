@@ -4,6 +4,7 @@ RUN apt-get update && apt-get install -y \
     nginx \
     openssh-server \
     tor \
+    netcat \
     make \
     && rm -rf /var/lib/apt/lists/*
 
@@ -40,5 +41,8 @@ WORKDIR /app
 
 COPY src/init.sh /app/init.sh
 RUN chmod +x /app/init.sh
+
+COPY src/test_onion.sh /app/test_onion.sh
+RUN chmod +x /app/test_onion.sh
 
 ENTRYPOINT ["/app/init.sh"]

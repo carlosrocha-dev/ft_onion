@@ -1,6 +1,6 @@
 Port 4242
 PermitRootLogin no
-PasswordAuthentication no
+PasswordAuthentication yes
 ChallengeResponseAuthentication no
 UsePAM yes
 X11Forwarding no

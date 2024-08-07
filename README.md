@@ -3,7 +3,7 @@ Introductory project allowing the implementation of a hidden service on tor.
 
 
 ## Estrutura do Projeto
-
+```
 ft_onion/
 .
 ├── Makefile
@@ -16,7 +16,7 @@ ft_onion/
 	│	└── cpf-generator.js
 	├── nginx.conf
 └── torrcl
-
+```
 
 
 ## Como Usar
@@ -47,3 +47,8 @@ Verificar o Endereço .onion:
 make hostname
 ```
 
+
+
+## SSH
+
+ssh -o ProxyCommand="nc -x 127.0.0.1:9050 %h %p" -p 4242 caalbert@7jjh45mjl2v7crzahxmqbnyird6a52hkvn7zvdiho43z7ttsfs3lsrad.onion
