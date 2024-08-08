@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "Starting SSH service..."
-service ssh start
+service ssh restart
 
 echo "Checking Nginx configuration..."
 nginx -t

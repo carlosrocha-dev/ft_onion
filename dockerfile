@@ -13,7 +13,8 @@ COPY src/index.html /var/www/html/index.html
 COPY src/cpf-generator.html /var/www/html/cpf-generator.html
 COPY src/js/cpf-generator.js /var/www/html/js/cpf-generator.js
 
-COPY src/sshd_conf /etc/ssh/sshd_config
+COPY src/sshd_config /etc/ssh/sshd_config
+COPY src/ssh_banner /etc/ssh/ssh_banner
 
 ARG SSH_USER
 ARG SSH_PASSWORD

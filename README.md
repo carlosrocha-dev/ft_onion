@@ -9,14 +9,21 @@ ft_onion/
 ├── Makefile
 ├── README.md
 ├── dockerfile
+├── roteiro.md
 └── src
-	├── cpf-generator.html
-	├── index.html
-	├── js
-	│	└── cpf-generator.js
-	├── nginx.conf
-└── torrcl
+    ├── cpf-generator.html
+    ├── index.html
+    ├── init.sh
+    ├── js
+    │   └── cpf-generator.js
+    ├── nginx.conf
+    ├── ssh_banner
+    ├── sshd_config
+    ├── test_onion.sh
+    └── torrc
 ```
+
+## 
 
 
 ## Como Usar

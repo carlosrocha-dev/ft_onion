@@ -1,0 +1,9 @@
+Port 4242
+PermitRootLogin no                  # Proíbe o login direto do usuário root via SSH
+PasswordAuthentication yes          # Habilita a autenticação de senha para login SSH.
+ChallengeResponseAuthentication no  # Desabilita métodos de autenticação interativos, como PAM.
+UsePAM yes                          # Habilita o uso de PAM (Pluggable Authentication Modules) para autenticação.
+X11Forwarding no                    # Desabilita o encaminhamento X11 para reduzir a superfície de ataque e melhorar a segurança.
+AcceptEnv LANG LC_*                 # Permite que variáveis de ambiente relacionadas ao idioma e localização sejam aceitas do cliente SSH.
+Subsystem sftp /usr/lib/openssh/sftp-server  # Especifica o caminho do servidor SFTP (SSH File Transfer Protocol).
+Banner /etc/ssh/ssh_banner          # Especifica o caminho para o arquivo de banner que será exibido aos usuários ao se conectarem via SSH.
